@@ -3,7 +3,7 @@ LABEL org.opencontainers.image.source=https://github.com/hardomx/nvim-containers
 
 # Install necessary programs
 RUN apt update \
-    && apt install wget git -y
+    && apt install wget git make build-essential ripgrep fd-find -y
 
 # Install Neovim. Since Ubuntu doesn't have the latest packages, we install it manually
 RUN wget https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.tar.gz \
@@ -16,8 +16,12 @@ RUN useradd -ms /bin/bash dev
 USER dev
 WORKDIR /home/dev
 
-RUN git clone https://github.com/hardomx/nvim .config/nvim
-
 ENV PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+ENV container="true"
+
+RUN git clone -b containerization https://github.com/hardomx/nvim .config/nvim \
+    && mkdir -p /home/dev/.config/nvim/spell \
+    && wget -O /home/dev/.config/nvim/spell/sv.utf-8.spl https://ftp.nluug.nl/pub/vim/runtime/spell/sv.utf-8.spl \
+    && nvim --headless -u NORC --cmd "set spelllang=sv" --cmd "set spell" +qa
 
 CMD ["sleep", "infinity"]
