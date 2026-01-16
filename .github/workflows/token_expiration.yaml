@@ -1,0 +1,13 @@
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  expiration_check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Token Expiration
+        run: |
+          curl -IsH 'authorization: token '${{ GHCR_TOKEN }} https://api.github.com/repos/hardomx/nvim-containers | grep github-authentication-token-expiration | grep -Eo '[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}'
