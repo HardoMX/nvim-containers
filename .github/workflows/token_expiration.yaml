@@ -1,3 +1,5 @@
+name: Expiration check
+
 on:
   push:
     branches:
