@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Check Token Expiration
         run: |
-          curl -IsH 'authorization: token '${{ GHCR_PASSWORD }} https://api.github.com/repos/hardomx/nvim-containers | grep github-authentication-token-expiration | grep -Eo '[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}'
+          curl -IsH 'authorization: token '${{ secrets.GHCR_PASSWORD }} https://api.github.com/repos/hardomx/nvim-containers | grep github-authentication-token-expiration | grep -Eo '[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}'
