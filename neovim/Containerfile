@@ -1,0 +1,20 @@
+FROM docker.io/ubuntu:24.04
+
+# Install wget and git
+RUN apt update \
+    && apt install wget git -y
+
+# Install Neovim. Since Ubuntu doesn't have the latest packages, we install it manually
+RUN wget https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.tar.gz \
+    && tar xzf ./nvim-linux-x86_64.tar.gz \
+    && rm ./nvim-linux-x86_64.tar.gz \
+    && mv ./nvim-linux-x86_64 /opt
+
+# Create dev user
+RUN useradd -ms /bin/bash dev
+USER dev
+WORKDIR /home/dev
+
+ENV PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+CMD ["sleep", "infinity"]
