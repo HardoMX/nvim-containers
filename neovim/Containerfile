@@ -20,8 +20,6 @@ ENV PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 ENV container="true"
 
 RUN git clone -b containerization https://github.com/hardomx/nvim .config/nvim \
-    && mkdir -p /home/dev/.config/nvim/spell \
-    && wget -O /home/dev/.config/nvim/spell/sv.utf-8.spl https://ftp.nluug.nl/pub/vim/runtime/spell/sv.utf-8.spl \
-    && nvim --headless -u NORC --cmd "set spelllang=sv" --cmd "set spell" +qa
+    && nvim --headless +qa
 
 CMD ["sleep", "infinity"]
