@@ -22,8 +22,8 @@ jobs:
 
       - name: Build container images
         run: |
-          docker build -f neovim/Containerfile -t ghcr.io/hardomx/neovim:${GITHUB_RUN_NUMBER}
-          docker build -f neovim/Containerfile -t ghcr.io/hardomx/neovim:latest
+          docker build -f neovim/Containerfile -t ghcr.io/hardomx/neovim:${GITHUB_RUN_NUMBER} ./neovim
+          docker build -f neovim/Containerfile -t ghcr.io/hardomx/neovim:latest ./neovim
 
       - name: Push images
         run: |
