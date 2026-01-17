@@ -35,8 +35,9 @@ jobs:
           CHANGED_FILES: ${{ steps.containerfiles.outputs.all_changed_files }}
         run: |
           for file in ${CHANGED_FILES}; do
-            docker build -f $file/Containerfile -t ghcr.io/${{ github.repository }}:${GITHUB_RUN_NUMBER} ./$file
-            docker build -f $file/Containerfile -t ghcr.io/${{ github.repository }}:latest ./$file
+            echo "Containerfile in $file has been changed"
+            docker build -f $file/Containerfile -t ghcr.io/${{ github.repository }}-$file:${GITHUB_RUN_NUMBER} ./$file
+            docker build -f $file/Containerfile -t ghcr.io/${{ github.repository }}-$file:latest ./$file
             docker push ghcr.io/${{ github.repository }}:${GITHUB_RUN_NUMBER}
             docker push ghcr.io/${{ github.repository }}:latest
           done
