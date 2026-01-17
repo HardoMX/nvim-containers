@@ -19,7 +19,9 @@ WORKDIR /home/dev
 ENV PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 ENV container="true"
 
-RUN git clone -b containerization https://github.com/hardomx/nvim .config/nvim \
+ARG CONFIG_URL="https://github.com/hardomx/nvim"
+
+RUN git clone -b containerization ${CONFIG_URL} .config/nvim \
     && nvim --headless +qa
 
 CMD ["sleep", "infinity"]
