@@ -22,14 +22,17 @@ jobs:
 
       - name: Build
         run:
-          docker build -f neovim/Containerfile -t ghcr.io/hardomx/nvim-containers-neovim:${GITHUB_RUN_NUMBER} -t ghcr.io/hardomx/nvim-containers-neovim:latest ./neovim
+          docker build -f neovim/Containerfile -t ghcr.io/hardomx/nvim-containers-neovim:${GITHUB_RUN_NUMBER} ./neovim
+          docker build -f neovim/Containerfile -t ghcr.io/hardomx/nvim-containers-neovim:latest ./neovim
           docker push ghcr.io/hardomx/nvim-containers-neovim:${GITHUB_RUN_NUMBER}
           docker push ghcr.io/hardomx/nvim-containers-neovim:latest
 
-          docker build -f python/Containerfile -t ghcr.io/hardomx/nvim-containers-python:${GITHUB_RUN_NUMBER} -t ghcr.io/hardomx/nvim-containers-python:latest ./python
+          docker build -f python/Containerfile -t ghcr.io/hardomx/nvim-containers-python:${GITHUB_RUN_NUMBER} ./python
+          docker build -f python/Containerfile -t ghcr.io/hardomx/nvim-containers-python:latest ./python
           docker push ghcr.io/hardomx/nvim-containers-python:${GITHUB_RUN_NUMBER}
           docker push ghcr.io/hardomx/nvim-containers-python:latest
 
-          docker build -f go/Containerfile -t ghcr.io/hardomx/nvim-containers-go:${GITHUB_RUN_NUMBER} -t ghcr.io/hardomx/nvim-containers-go:latest ./go
+          docker build -f go/Containerfile -t ghcr.io/hardomx/nvim-containers-go:${GITHUB_RUN_NUMBER} ./go
+          docker build -f go/Containerfile -t ghcr.io/hardomx/nvim-containers-go:latest ./go
           docker push ghcr.io/hardomx/nvim-containers-go:${GITHUB_RUN_NUMBER}
           docker push ghcr.io/hardomx/nvim-containers-go:latest
