@@ -18,8 +18,8 @@ jobs:
         uses: tj-actions/changed-files@v47
         with:
           dir_names: "true"
-          # files: |
-          #   **/Containerfile
+          files: |
+            **/Containerfile
 
       - name: Login to GHCR
         # if: steps.containerfiles.outputs.any_changed == 'true'
