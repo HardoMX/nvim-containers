@@ -19,7 +19,7 @@ jobs:
         with:
           dir_names: "true"
           files: |
-            Containerfile
+            **/Containerfile
 
       - name: Login to GHCR
         if: steps.containerfiles.outputs.any_changed == 'true'
