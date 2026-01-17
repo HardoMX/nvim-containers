@@ -15,7 +15,7 @@ jobs:
 
       - name: Check for image changes
         id: containerfiles
-        uses: tj-actions/changed-files@47
+        uses: tj-actions/changed-files@47.0.1
         with:
           dir_names: "true"
           files: |
