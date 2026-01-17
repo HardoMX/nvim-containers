@@ -20,8 +20,8 @@ jobs:
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_PASSWORD }}
 
-      - name: Build
-        run:
+      - name: Build images
+        run: |
           docker build -f neovim/Containerfile -t ghcr.io/hardomx/nvim-containers-neovim:${GITHUB_RUN_NUMBER} ./neovim
           docker build -f neovim/Containerfile -t ghcr.io/hardomx/nvim-containers-neovim:latest ./neovim
           docker push ghcr.io/hardomx/nvim-containers-neovim:${GITHUB_RUN_NUMBER}
