@@ -29,6 +29,10 @@ jobs:
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_PASSWORD }}
 
+      - name: Downcase repository
+        run: |
+          echo "REPO=${GITHUB_REPOSITORY@L}" >>${GITHUB_ENV}
+
       - name: Build and push container images
         # if: steps.containerfiles.outputs.any_changed == 'true'
         env:
@@ -36,8 +40,8 @@ jobs:
         run: |
           for file in ${CHANGED_FILES}; do
             echo "Containerfile in $file has been changed"
-            docker build -f $file/Containerfile -t ghcr.io/${{ github.repository }}-$file:${GITHUB_RUN_NUMBER} ./$file
-            docker build -f $file/Containerfile -t ghcr.io/${{ github.repository }}-$file:latest ./$file
-            docker push ghcr.io/${{ github.repository }}:${GITHUB_RUN_NUMBER}
-            docker push ghcr.io/${{ github.repository }}:latest
+            docker build -f $file/Containerfile -t ghcr.io/${REPO}-$file:${GITHUB_RUN_NUMBER} ./$file
+            docker build -f $file/Containerfile -t ghcr.io/${REPO}-$file:latest ./$file
+            docker push ghcr.io/${REPO}:${GITHUB_RUN_NUMBER}
+            docker push ghcr.io/${REPO}:latest
           done
