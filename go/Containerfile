@@ -1,0 +1,13 @@
+FROM ghcr.io/hardomx/neovim:latest
+LABEL org.opencontainers.image.source=https://github.com/hardomx/nvim-containers
+
+USER root
+
+RUN apt update \
+    && apt install golang-go delve gopls -y
+
+USER dev
+
+RUN nvim --headless +qa
+
+CMD ["sleep", "infinity"]
