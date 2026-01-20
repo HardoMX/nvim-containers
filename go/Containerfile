@@ -1,4 +1,4 @@
-FROM ghcr.io/hardomx/neovim:latest
+FROM ghcr.io/hardomx/nvim-containers-neovim:latest
 LABEL org.opencontainers.image.source=https://github.com/hardomx/nvim-containers
 
 USER root
