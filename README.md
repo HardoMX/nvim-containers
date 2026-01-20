@@ -12,3 +12,8 @@ Unlike VSCode, however, Neovim runs in the terminal. Thus you don't need a fancy
 
 ## How?
 The base image is Ubuntu:24.04. Onto it Neovim is installed and a ´dev´user is set up. This image is then used as the base for specific images. 
+
+## Usage
+The best way to use these images are to use them as a base in your own Containerfile. This allows you to make any necessary changes, and to copy in any local files you need.
+
+This can be done using `FROM ghcr.io/hardomx/nvim-containers-<LANGUAGE>:latest` and replacing `<LANGUAGE>` with the desired base image.
