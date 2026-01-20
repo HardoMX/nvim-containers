@@ -42,6 +42,6 @@ jobs:
             echo "Containerfile in $file has been changed"
             docker build -f $file/Containerfile -t ghcr.io/${REPO}-$file:${GITHUB_RUN_NUMBER} ./$file
             docker build -f $file/Containerfile -t ghcr.io/${REPO}-$file:latest ./$file
-            docker push ghcr.io/${REPO}:${GITHUB_RUN_NUMBER}
-            docker push ghcr.io/${REPO}:latest
+            docker push ghcr.io/${REPO}-$file:${GITHUB_RUN_NUMBER}
+            docker push ghcr.io/${REPO}-$file:latest
           done
